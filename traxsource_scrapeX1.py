@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup as soup
 import sqlite3
 from urllib2 import urlopen
 import re
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 my_url = 'https://www.traxsource.com/genre/20/techno/top'
 
@@ -51,7 +54,7 @@ for track in tracks:
 
     conn = sqlite3.connect('Beatscrape.db')
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO TrxSrcTrax VALUES (?, ?, ?, ?, ?, ?, ?)", (str(artistx), str(songx), str(labelx), str(pricex), str(positionx), str(genrex), str(web_source)))
+    cursor.execute("INSERT INTO TrxSrcTrax VALUES (?, ?, ?, ?, ?, ?, ?)", (str(artistx), str(songx), str(labelx), str(genrex), str(pricex), str(positionx), str(web_source)))
     conn.commit()
     cursor.close()
     conn.close()
